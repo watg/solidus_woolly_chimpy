@@ -131,12 +131,16 @@ module Spree::Chimpy
       end
 
       def find_segment_id
-        response = api_list_call
-          .segments
-          .retrieve(params: {"fields" => "segments.id,segments.name"})
-        segment = response["segments"].detect {|segment| segment['name'].downcase == @segment_name.downcase }
+        begin
+          response = api_list_call.
+            segments.
+            retrieve(params: {"fields" => "segments.id,segments.name"})
 
-        segment['id'] if segment
+          segment = response.body["segments"].detect {|segment| segment['name'].downcase == @segment_name.downcase }
+          segment['id']
+        rescue Gibbon::MailChimpError => e
+          puts "Could not find segment: #{ @segment_name.downcase }"
+        end
       end
 
       def segment_id
