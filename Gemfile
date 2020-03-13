@@ -1,10 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'spree', github: 'spree/spree', branch: '2-3-stable'
-gem 'spree_auth_devise', github: "spree/spree_auth_devise", branch: '2-3-stable'
+gem 'rails', '5.1.1'
+
+gem 'solidus', '2.4.2'
+gem 'solidus_auth_devise', '2.1.0'
+gem 'deface'
+gem 'factory_bot_rails', '~> 4.8.2'
 gem 'libnotify'
 gem 'fuubar'
-gem 'byebug'
 gem 'pry-byebug'
+gem 'pry-rails'
+gem 'sqlite3', '~> 1.3.9'
 
 gemspec
